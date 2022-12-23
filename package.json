@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.28.0",
+    "sequelize-cli": "^6.5.2"
+  },
+  "name": "proyectofinalgeekshubs-comedor-backend",
+  "description": "proyecto backend para aplicación de reserva de comedor",
+  "version": "0.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosHidalgo95/ProyectoFinalGeeksHubs-Comedor-Backend.git"
+  },
+  "keywords": [
+    "backend",
+    "express",
+    "sql",
+    "sequelize"
+  ],
+  "author": "Carlos Hidalgo Sanchis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosHidalgo95/ProyectoFinalGeeksHubs-Comedor-Backend/issues"
+  },
+  "homepage": "https://github.com/carlosHidalgo95/ProyectoFinalGeeksHubs-Comedor-Backend#readme"
+}
