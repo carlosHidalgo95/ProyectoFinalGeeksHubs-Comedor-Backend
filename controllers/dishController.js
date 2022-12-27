@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findDish,deleteDish,updateDish}=require("../services/dish.services")
+const {findAllDishes,findDish,deleteDish,updateDish}=require("../services/dish.services")
 
 const dishController = {}
 
@@ -16,7 +16,22 @@ dishController.createDish = async (req, res) => {
 
 }
 
-//RECUPERAR PLATO
+//RECUPERAR TODOS LOS PLATOS
+dishController.getAllDishes = async (req, res) => {
+    try {
+        console.log("abc")
+        let resp=await findAllDishes();
+        console.log("cba")
+
+        res.send(resp);
+    } catch (error) {
+        console.log(error)
+        res.send()
+    }
+
+}
+
+//RECUPERAR UN PLATO
 
 dishController.getDishByName = async (req, res) => {
     try {

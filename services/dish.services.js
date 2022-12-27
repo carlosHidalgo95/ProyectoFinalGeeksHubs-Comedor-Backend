@@ -9,6 +9,11 @@ function findDish(name){
     return resp;
 }
 
+function findAllDishes(){
+    let resp = models.dishes.findAll();
+    return resp;
+}
+
 function createDish(){
     let resp = models.dishes.create({
 
@@ -38,4 +43,4 @@ function updateDish(){
     //     return resp;
 }
 
-module.exports={findDish,deleteDish,updateDish};
+module.exports={findDish,findAllDishes,deleteDish,updateDish};
