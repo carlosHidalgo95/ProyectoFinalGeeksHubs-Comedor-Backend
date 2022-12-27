@@ -6,7 +6,7 @@ const { REPL_MODE_SLOPPY } = require("node:repl");
 
 async function assertEmailIsUniqueService(email) {
   // validate email is unique
-  const user = await models.user.findOne({
+  const user = await models.users.findOne({
     where:{ email: email }});
   if (user) {
     throw new Error("Email is already registered");
@@ -22,13 +22,10 @@ async function createUserService(userBody) {
   if (day=="0") {
     day=`0${new Date().getDate()}`;
   }
-  console.log(day);
-  console.log("-----------------------------");
   userBody.password = hash;
-  let created=await models.user.create({
+  let created=await models.users.create({
     username:userBody.username,
     email:userBody.email,
-    dob:userBody.dob,
     password:hash,
     id_role:2,
     createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
@@ -62,7 +59,7 @@ if(typeof bearerHeader!=="undefined"){
 }
 
 async function isValidUserAndPassword(user, pass) {
-    const userFound = await models.user.findOne({ email: user });
+    const userFound = await models.users.findOne({ email: user });
     if (userFound) {
       const hash = encryptPassword(pass);
       return hash === userFound.password;

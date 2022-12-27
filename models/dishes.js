@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       dishes.hasOne(models.types,{ foreignKey: 'id'});
+      dishes.belongsToMany(models.bookings,{foreignKey: 'id',through:'booking_dishes'});
+
     }
   }
   dishes.init({
