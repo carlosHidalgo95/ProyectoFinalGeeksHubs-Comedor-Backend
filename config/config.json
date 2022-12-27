@@ -1,10 +1,10 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
-    "database": "dinner",
-    "host": "127.0.0.1",
-    "port":"33061",
+    "password": "Ctf6GsVeX2AhVaYudabV",
+    "database": "railway",
+    "host": "containers-us-west-85.railway.app",
+    "port": "6242",
     "dialect": "mysql"
   },
   "test": {
@@ -16,10 +16,10 @@
   },
   "production": {
     "username": "root",
-    "password": "root",
-    "database": "dinner",
-    "host": "127.0.0.1",
-    "port": "33061",
+    "password": "Ctf6GsVeX2AhVaYudabV",
+    "database": "railway",
+    "host": "containers-us-west-85.railway.app",
+    "port": "6242",
     "dialect": "mysql"
   }
 }

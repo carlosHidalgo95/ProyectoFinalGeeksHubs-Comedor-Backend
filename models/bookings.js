@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-    booking_date: DataTypes.DATE,
+    booking_date: DataTypes.DATEONLY,
+    time:DataTypes.STRING
    }, {
     sequelize,
     modelName: 'bookings',
