@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     booking_date: DataTypes.DATE,
-    id_user:DataTypes.INTEGER
-  }, {
+   }, {
     sequelize,
     modelName: 'booking',
   });

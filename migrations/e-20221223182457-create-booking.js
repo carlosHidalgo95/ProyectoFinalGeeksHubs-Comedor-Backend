@@ -12,6 +12,9 @@ module.exports = {
       booking_date: {
         type: Sequelize.DATE
       },
+      id_user: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -21,6 +24,17 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addConstraint('bookings', {
+      fields: ['id_user'],
+      type: 'foreign key',
+      name: 'fk_booking_users',
+      references: {
+        table: 'users',
+        field: 'id'
+      },
+      onDelete: 'cascade',
+      onUpdate: 'cascade'
+    })
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('bookings');

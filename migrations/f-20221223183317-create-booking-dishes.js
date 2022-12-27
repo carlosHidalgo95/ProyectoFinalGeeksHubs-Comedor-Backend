@@ -9,11 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
-        onDelete: 'CASCADE',
-      },
       id_booking: {
         type: Sequelize.INTEGER,
         references: { model: 'bookings', key: 'id' },
