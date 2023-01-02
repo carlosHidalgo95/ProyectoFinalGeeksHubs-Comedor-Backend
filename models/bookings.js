@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       bookings.hasOne(models.users,{ foreignKey: 'id'});
+      bookings.belongsToMany(models.dishes,{through:'booking_dishes'});
+
     }
   }
   bookings.init({
@@ -22,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     booking_date: DataTypes.DATEONLY,
-    time:DataTypes.STRING
+    time:DataTypes.STRING,
+    id_user: DataTypes.INTEGER
    }, {
     sequelize,
     modelName: 'bookings',

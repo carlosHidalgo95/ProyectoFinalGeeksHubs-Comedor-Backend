@@ -43,4 +43,4 @@ function updateDish(){
     //     return resp;
 }
 
-module.exports={findDish,findAllDishes,deleteDish,updateDish};
+module.exports={findDish,createDish,findAllDishes,deleteDish,updateDish};

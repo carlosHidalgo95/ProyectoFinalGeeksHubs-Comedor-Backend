@@ -9,12 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_booking: {
+      bookingId: {
         type: Sequelize.INTEGER,
         references: { model: 'bookings', key: 'id' },
         onDelete: 'CASCADE',      
       },
-      id_dish: {
+      dishId: {
         type: Sequelize.INTEGER,
         references: { model: 'dishes', key: 'id' },
         onDelete: 'CASCADE',      
