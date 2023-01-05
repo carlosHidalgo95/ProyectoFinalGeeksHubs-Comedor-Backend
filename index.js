@@ -25,7 +25,7 @@ app.use((req,res,next)=>{
 app.use(express.json());
 app.use(router);
 
-app.listen(3001,'0.0.0.0', ()=>{
+app.listen(PORT,'0.0.0.0', ()=>{
     console.log(`El servidor esta up y alojado en el puerto => ${PORT}`);
 
     db.sync({force:true}).then(()=> {
