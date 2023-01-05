@@ -56,5 +56,13 @@ function deleteBooking(id){
     });
     return resp;
 }
+function findBookingsByDate(date){
+    let resp = models.bookings.findAll({
+        where: {
+            booking_date:date
+        }
+    });
+    return resp;
+}
 
-module.exports={findBooking,createBooking,findAllBookings,deleteBooking};
+module.exports={findBooking,createBooking,findAllBookings,deleteBooking,findBookingsByDate};

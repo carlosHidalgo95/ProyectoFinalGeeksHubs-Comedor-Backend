@@ -18,7 +18,7 @@ async function assertEmailIsUniqueService(email) {
 async function createUserService(userBody) {
   let day;
   const hash = encryptPassword(userBody.password);
-  day=new Date().getDay();
+  day=new Date().getDate();
   if (day=="0") {
     day=`0${new Date().getDate()}`;
   }

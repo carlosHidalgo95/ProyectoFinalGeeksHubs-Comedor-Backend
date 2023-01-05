@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findAllBookings,createBooking,findBooking,deleteBooking}=require("../services/booking.services")
+const {findAllBookings,createBooking,findBooking,findBookingsByDate,deleteBooking}=require("../services/booking.services")
 
 const bookingController = {}
 
@@ -53,6 +53,35 @@ bookingController.deleteBooking=async(req,res)=>{
         res.json({ message: "Ha ocurrido un error" })
 
     }
+}
+
+bookingController.getFreeTimes = async (req, res) => {
+    const data=req.body;
+    let times=["14:00","14:15","14:30","14:45","15:00","15:15","15:30"];
+    let aviableTimes=new Array();
+    let aviable=false;
+    let resp=await findBookingsByDate(data.date);
+    console.log("LENGTH:"+resp.length);
+    for (let i=0; i<times.length; i++){
+        for (let j = 0; j < resp.length; j++) {
+            console.log(resp[j].dataValues);
+            if (times[i]==resp[j].dataValues.time) {
+                aviable=false;
+            }else{
+                console.log("----------------"+times[i]+"-----------------------------------");
+                console.log("*****************"+resp[j].dataValues.time+"********************");
+                aviable=true;
+
+            }
+        }
+        if(aviable){
+            aviableTimes.push(times[i]);
+        }
+
+    }
+    console.log(aviableTimes);
+
+    res.send();
 }
 
 module.exports = bookingController;

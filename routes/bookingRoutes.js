@@ -6,6 +6,7 @@ const db = require('../db/db');
 
 router.get('/get', bookingController.getBookingById);
 router.get('/getAll', bookingController.getAllBookings);
+router.post('/getTimes', bookingController.getFreeTimes);
 router.post('/create', bookingController.createBooking);
 router.delete('/delete',bookingController.deleteBooking);
 
