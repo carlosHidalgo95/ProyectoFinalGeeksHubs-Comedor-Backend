@@ -81,7 +81,7 @@ bookingController.getFreeTimes = async (req, res) => {
     }
     console.log(aviableTimes);
 
-    res.send();
+    res.send(aviableTimes);
 }
 
 module.exports = bookingController;
