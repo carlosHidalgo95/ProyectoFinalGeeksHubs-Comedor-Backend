@@ -62,25 +62,29 @@ bookingController.getFreeTimes = async (req, res) => {
     let aviable=false;
     let resp=await findBookingsByDate(data.date);
     console.log("LENGTH:"+resp.length);
-    for (let i=0; i<times.length; i++){
-        for (let j = 0; j < resp.length; j++) {
-            console.log(resp[j].dataValues);
-            if (times[i]==resp[j].dataValues.time) {
-                aviable=false;
-            }else{
-                console.log("----------------"+times[i]+"-----------------------------------");
-                console.log("*****************"+resp[j].dataValues.time+"********************");
-                aviable=true;
-
-            }
-        }
-        if(aviable){
-            aviableTimes.push(times[i]);
-        }
-
+    if (resp.length==0) {
+        aviableTimes=times;
     }
-    console.log(aviableTimes);
-
+    else{
+        for (let i=0; i<times.length; i++){
+            for (let j = 0; j < resp.length; j++) {
+                console.log(resp[j].dataValues);
+                if (times[i]==resp[j].dataValues.time) {
+                    aviable=false;
+                }else{
+                    console.log("----------------"+times[i]+"-----------------------------------");
+                    console.log("*****************"+resp[j].dataValues.time+"********************");
+                    aviable=true;
+    
+                }
+            }
+            if(aviable){
+                aviableTimes.push(times[i]);
+            }
+    
+        }
+    }
+    
     res.send(aviableTimes);
 }
 
