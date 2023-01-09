@@ -1,16 +1,17 @@
 const models = require("../models/index");
-
-function findBooking(id){
-    let resp = models.bookings.findOne({
+const Dishes=models.dishes;
+function findBooking(id_user){
+    let resp = models.bookings.findAll({
         where: {
-            id
-        }
+            id_user
+        },
+        include: Dishes
     });
     return resp;
 }
 
 function findAllBookings(){
-    let resp = models.bookings.findAll();
+    let resp = models.bookings.findAll({include: Dishes});
     return resp;
 }
 

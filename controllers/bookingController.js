@@ -31,10 +31,10 @@ bookingController.getAllBookings = async (req, res) => {
 
 //RECUPERAR UNA RESERVA
 
-bookingController.getBookingById = async (req, res) => {
+bookingController.getBookingsByUser = async (req, res) => {
     try {
         const data=req.body;
-        let resp=await findBooking(data.id);
+        let resp=await findBooking(data.id_user);
         res.send(resp);
     } catch (error) {
         res.send()
@@ -75,7 +75,6 @@ bookingController.getFreeTimes = async (req, res) => {
                     console.log("----------------"+times[i]+"-----------------------------------");
                     console.log("*****************"+resp[j].dataValues.time+"********************");
                     aviable=true;
-    
                 }
             }
             if(aviable){
