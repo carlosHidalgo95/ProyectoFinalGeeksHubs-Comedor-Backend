@@ -19,17 +19,19 @@ async function createUserService(userBody) {
   let day;
   const hash = encryptPassword(userBody.password);
   day=new Date().getDate();
-  if (day=="0") {
+  if (day<10) {
     day=`0${new Date().getDate()}`;
   }
+  console.log(day);
   userBody.password = hash;
+  console.log(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`);
   let created=await models.users.create({
     username:userBody.username,
     email:userBody.email,
     password:hash,
     id_role:2,
-    createdAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
-    updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+    createdAt: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+    updatedAt: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
   });
 
   return created;
