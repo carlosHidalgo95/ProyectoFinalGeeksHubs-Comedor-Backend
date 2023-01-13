@@ -2,26 +2,26 @@ const models = require("../models/index");
 
 //Recuperar un usuario (a través de su email)
 function findUser(email){
-    let resp = models.users.findOne({
+    let user = models.users.findOne({
         where: {
             email
         }
     });
-    return resp;
+    return user;
 }
 
 //Borrar usuario
 function deleteUser(email){
-    let resp= models.users.destroy({
+    let user= models.users.destroy({
         where: {
         email
         }
     });
-    return resp;
+    return user;
 }
 
 function updateUser(email,newEmail,newPassword,newUsername){
-    let resp=models.users.update(
+    let user=models.users.update(
         {
             email:newEmail,
             password:newPassword,
@@ -30,7 +30,7 @@ function updateUser(email,newEmail,newPassword,newUsername){
         {
             where: { email }
         });
-        return resp;
+        return user;
 }
 
 module.exports={findUser,deleteUser,updateUser};
