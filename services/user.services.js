@@ -1,5 +1,6 @@
 const models = require("../models/index");
 
+//Recuperar un usuario (a través de su email)
 function findUser(email){
     let resp = models.users.findOne({
         where: {
@@ -9,6 +10,7 @@ function findUser(email){
     return resp;
 }
 
+//Borrar usuario
 function deleteUser(email){
     let resp= models.users.destroy({
         where: {
