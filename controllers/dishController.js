@@ -9,9 +9,9 @@ dishController.createDish = async (req, res) => {
     try {
         const data=req.body;
         let resp=await createDish(data.name);
-        res.send(resp);
+        return res.json(resp);
     } catch (error) {
-        res.send()
+        return res.status(500).json({error: error.message});
     }
 
 }
@@ -21,12 +21,10 @@ dishController.getAllDishes = async (req, res) => {
     try {
         console.log("abc")
         let resp=await findAllDishes();
-        console.log("cba")
-
-        res.send(resp);
+        return res.send(resp);
     } catch (error) {
         console.log(error)
-        res.send()
+        return res.status(500).json({error: error.message});
     }
 
 }
@@ -37,11 +35,10 @@ dishController.getDishByName = async (req, res) => {
     try {
         const data=req.body;
         let resp=await findDish(data.name);
-        res.send(resp);
+        return res.json(resp);
     } catch (error) {
-        res.send()
+        return res.status(500).json({error: error.message});
     }
-
 }
 
 //MODIFICAR PLATO

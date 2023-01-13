@@ -1,69 +1,74 @@
 const models = require("../models/index");
 const Dishes=models.dishes;
 function findBooking(id_user){
-    let resp = models.bookings.findAll({
+    const booking = models.bookings.findAll({
         where: {
             id_user
         },
         include: Dishes
     });
-    return resp;
+    return booking;
 }
 
 function findAllBookings(){
-    let resp = models.bookings.findAll({include: Dishes});
-    return resp;
+    const booking = models.bookings.findAll({include: Dishes});
+    return booking;
 }
 
-async function createBooking(){
-    let day,month;
-    day=new Date().getDate();
+async function createBooking(body,id){
+    console.log("Socorro")
+   let day=new Date().getDate();
     if (day<10) {
       day=`0${new Date().getDate()}`;
     }
-    month=new Date().getMonth()+1;
+   let month=new Date().getMonth()+1;
     if (month<10) {
       month=`0${month}`;
     }
-    console.log(`${new Date().getFullYear()}-${month}-${day}`)
-    let resp =await models.bookings.create({
-        booking_date:`${new Date().getFullYear()}-${month}-${day}`,
-        time:"12:30",
+    console.log(body);
+    const booking =await models.bookings.create({
+        // booking_date:`${new Date().getFullYear()}-${month}-${day}`,
+        booking_date:body.booking_date,
+        time:body.time,
         // id_user: req.auth.id,
-        id_user: 1,
+        id_user: id,
         createdAt: `${new Date().getFullYear()}-${month}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
         updatedAt: `${new Date().getFullYear()}-${month}-${day} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
     });
-    let dish1=await models.dishes.findOne({
+    const entrante=await models.dishes.findOne({
         where: {
-            id:1
+            id:body.entrante_id
         }
     })
-    let dish2=await models.dishes.findOne({
+    const primero=await models.dishes.findOne({
         where: {
-            id:2
+            id:body.primero_id
         }
     })
-    resp.addDishes([dish1,dish2])
-    console.log("WTF    "+resp);
-    return resp
+    const segundo=await models.dishes.findOne({
+        where: {
+            id:body.segundo_id
+        }
+    })
+    booking.addDishes([entrante,primero,segundo])
+    return booking
 }
 
 function deleteBooking(id){
-    let resp= models.bookings.destroy({
+    const booking= models.bookings.destroy({
         where: {
         id
         }
     });
-    return resp;
+    return booking;
 }
 function findBookingsByDate(date){
-    let resp = models.bookings.findAll({
+    const booking = models.bookings.findAll({
         where: {
             booking_date:date
         }
     });
-    return resp;
+    return booking;
 }
 
 module.exports={findBooking,createBooking,findAllBookings,deleteBooking,findBookingsByDate};

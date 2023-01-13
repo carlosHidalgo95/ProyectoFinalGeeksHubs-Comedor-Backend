@@ -1,46 +1,37 @@
 const models = require("../models/index");
 
 function findDish(name){
-    let resp = models.dishes.findOne({
+    let dish = models.dishes.findOne({
         where: {
             dish_name:name
         }
     });
-    return resp;
+    return dish;
 }
 
 function findAllDishes(){
-    let resp = models.dishes.findAll();
-    return resp;
+    let dishes = models.dishes.findAll();
+    return dishes;
 }
 
 function createDish(){
-    let resp = models.dishes.create({
+    let dish = models.dishes.create({
 
     });
-    return resp
+    return dish
 }
 
 function deleteDish(id){
-    let resp= models.dishes.destroy({
+    let deletedDish= models.dishes.destroy({
         where: {
         id
         }
     });
-    return resp;
+    return deletedDish;
 }
 
 function updateDish(){
-    // let resp=models.dish.update(
-    //     {
-    //         email:newEmail,
-    //         password:newPassword,
-    //         username:newUsername
-    //     },
-    //     {
-    //         where: { email }
-    //     });
-    //     return resp;
+
 }
 
 module.exports={findDish,createDish,findAllDishes,deleteDish,updateDish};

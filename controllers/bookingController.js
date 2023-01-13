@@ -9,10 +9,11 @@ bookingController.createBooking = async (req, res) => {
     try {
         // const data=req.body;
         console.log("empesemos")
-        let resp=await createBooking();
-        res.send(resp);
+        let resp=await createBooking(req.body,req.auth.id);
+        console.log(resp);
+        res.json(resp);
     } catch (error) {
-        res.send()
+        res.json(error)
     }
 
 }
@@ -33,8 +34,9 @@ bookingController.getAllBookings = async (req, res) => {
 
 bookingController.getBookingsByUser = async (req, res) => {
     try {
+        // console.log(req.auth);
         const data=req.body;
-        let resp=await findBooking(data.id_user);
+        let resp=await findBooking(req.auth.id);
         res.send(resp);
     } catch (error) {
         res.send()
@@ -49,9 +51,8 @@ bookingController.deleteBooking=async(req,res)=>{
         const data=req.body;
         let resp=await deleteBooking(data.name);
         res.json({ message: "Se ha elminado la reserva correctamente" })
-    }catch{
+    }catch(error){
         res.json({ message: "Ha ocurrido un error" })
-
     }
 }
 
@@ -68,12 +69,9 @@ bookingController.getFreeTimes = async (req, res) => {
     else{
         for (let i=0; i<times.length; i++){
             for (let j = 0; j < resp.length; j++) {
-                console.log(resp[j].dataValues);
                 if (times[i]==resp[j].dataValues.time) {
                     aviable=false;
                 }else{
-                    console.log("----------------"+times[i]+"-----------------------------------");
-                    console.log("*****************"+resp[j].dataValues.time+"********************");
                     aviable=true;
                 }
             }
