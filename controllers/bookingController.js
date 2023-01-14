@@ -13,7 +13,7 @@ bookingController.createBooking = async (req, res) => {
         console.log(resp);
         res.json(resp);
     } catch (error) {
-        res.json(error)
+        res.status(500).json({ message: error.message });
     }
 
 }
@@ -22,10 +22,10 @@ bookingController.createBooking = async (req, res) => {
 bookingController.getAllBookings = async (req, res) => {
     try {
         let resp=await findAllBookings();
-        res.send(resp);
+        res.json(resp);
     } catch (error) {
         console.log(error)
-        res.send()
+        res.status(500).json({ message: error.message });
     }
 
 }
@@ -39,7 +39,7 @@ bookingController.getBookingsByUser = async (req, res) => {
         let resp=await findBooking(req.auth.id);
         res.send(resp);
     } catch (error) {
-        res.send()
+        res.status(500).json({ message: error.message });
     }
 
 }
