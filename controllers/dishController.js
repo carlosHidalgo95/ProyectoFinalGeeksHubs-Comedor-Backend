@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findAllDishes,findDish,deleteDish,updateDish}=require("../services/dish.services")
+const {findAllDishes,findDish,deleteDish,createDish,updateDish}=require("../services/dish.services")
 
 const dishController = {}
 
@@ -8,7 +8,7 @@ const dishController = {}
 dishController.createDish = async (req, res) => {
     try {
         const data=req.body;
-        let resp=await createDish(data.name);
+        let resp=await createDish(data);
         return res.json(resp);
     } catch (error) {
         return res.status(500).json({error: error.message});

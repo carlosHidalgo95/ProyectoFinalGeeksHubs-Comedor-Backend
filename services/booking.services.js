@@ -18,6 +18,10 @@ function findAllBookings(){
     return booking;
 }
 
+function findBookingByDate(){
+    
+}
+
 //Crear reserva
 async function createBooking(body,id){
    let day=new Date().getDate();
@@ -28,7 +32,6 @@ async function createBooking(body,id){
     if (month<10) {
       month=`0${month}`;
     }
-    console.log(body);
     const booking =await models.bookings.create({
         booking_date:body.booking_date,
         time:body.time,
@@ -53,7 +56,12 @@ async function createBooking(body,id){
             id:body.segundo_id
         }
     })
-    booking.addDishes([entrante,primero,segundo])
+    const postre=await models.dishes.findOne({
+        where: {
+            id:body.postre_id
+        }
+    })
+    booking.addDishes([entrante,primero,segundo,postre])
     return booking
 }
 
@@ -77,4 +85,4 @@ function findBookingsByDate(date){
     return booking;
 }
 
-module.exports={findBooking,createBooking,findAllBookings,deleteBooking,findBookingsByDate};
+module.exports={findBooking,findBookingByDate,createBooking,findAllBookings,deleteBooking,findBookingsByDate};
