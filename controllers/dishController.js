@@ -19,7 +19,6 @@ dishController.createDish = async (req, res) => {
 //RECUPERAR TODOS LOS PLATOS
 dishController.getAllDishes = async (req, res) => {
     try {
-        console.log("abc")
         let resp=await findAllDishes();
         return res.send(resp);
     } catch (error) {

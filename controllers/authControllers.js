@@ -12,6 +12,8 @@ const {
 async function authLoginController(req, res) {
   const { email, password } = req.body;
   const userFound = await findUser(email);
+  console.log(email);
+
   if (!userFound) {
     res.status(401).json({ message: "Password or email is incorrect" });
     return;
