@@ -35,7 +35,6 @@ bookingController.getAllBookings = async (req, res) => {
 bookingController.getBookingsByUser = async (req, res) => {
     try {
         // console.log(req.auth);
-        const data=req.body;
         let resp=await findBooking(req.auth.id);
         res.send(resp);
     } catch (error) {

@@ -3,10 +3,10 @@ const router = express.Router();
 const bookingController = require('../controllers/bookingController');
 
 const db = require('../db/db');
-const { authBearerMiddleware } = require('../middleware/auth.middleware');
+const { authBearerMiddleware, isValidRoleAdmin } = require('../middleware/auth.middleware');
 
 router.get('/get',authBearerMiddleware, bookingController.getBookingsByUser);
-router.get('/getAll', bookingController.getAllBookings);
+router.get('/getAll',authBearerMiddleware,isValidRoleAdmin, bookingController.getAllBookings);
 router.post('/getTimes', bookingController.getFreeTimes);
 router.post('/create',authBearerMiddleware, bookingController.createBooking);
 router.delete('/delete',bookingController.deleteBooking);
