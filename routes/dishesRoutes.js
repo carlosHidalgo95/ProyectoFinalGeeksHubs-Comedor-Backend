@@ -8,7 +8,7 @@ const { authBearerMiddleware, isValidRoleAdmin } = require('../middleware/auth.m
 
 router.get('/get', dishController.getDishByName);
 router.get('/getAll', dishController.getAllDishes);
-router.post(authBearerMiddleware,isValidRoleAdmin, '/create', dishController.createDish);
+router.post('/create',authBearerMiddleware,isValidRoleAdmin, dishController.createDish);
 router.delete('/delete',dishController.deleteDish);
 router.put('/update',dishController.updateDish);
 
