@@ -6,6 +6,8 @@ const db = require('../db/db');
 const { authBearerMiddleware, isValidRoleAdmin } = require('../middleware/auth.middleware');
 
 router.get('/get',authBearerMiddleware, bookingController.getBookingsByUser);
+router.get('/search/:word',authBearerMiddleware,bookingController.searchBookings);
+router.get('/searchAll/:word',authBearerMiddleware,isValidRoleAdmin,bookingController.searchAllBookings);
 router.get('/getAll',authBearerMiddleware,isValidRoleAdmin, bookingController.getAllBookings);
 router.post('/getTimes', bookingController.getFreeTimes);
 router.post('/create',authBearerMiddleware, bookingController.createBooking);

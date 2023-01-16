@@ -1,18 +1,37 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {findAllBookings,findBookingByDate,createBooking,findBooking,findBookingsByDate,deleteBooking}=require("../services/booking.services")
+const {getAllBookings,findBooking,findAllBookings,createBooking,findBooking,findBookingsByDate,deleteBooking}=require("../services/booking.services")
 
 const bookingController = {}
 
 //CREAR RESERVA
 bookingController.createBooking = async (req, res) => {
     try {
-        // const data=req.body;
-        console.log("empesemos")
         let resp=await createBooking(req.body,req.auth.id);
-        console.log(resp);
         res.json(resp);
     } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+}
+
+bookingController.searchBookings = async (req, res) => {
+    try{
+        let resp = await findBooking(req.params.word,req.auth.id);
+        res.json(resp);
+    }catch(error){
+        console.log(error)
+        res.status(500).json({ message: error.message });
+    }
+
+}
+
+bookingController.searchAllBookings = async (req, res) => {
+    try{
+        let resp = await findAllBookings(req.params.word);
+        res.json(resp);
+    }catch(error){
+        console.log(error)
         res.status(500).json({ message: error.message });
     }
 
@@ -21,7 +40,7 @@ bookingController.createBooking = async (req, res) => {
 //RECUPERAR TODAS LAS RESERVAS
 bookingController.getAllBookings = async (req, res) => {
     try {
-        let resp=await findAllBookings();
+        let resp=await getAllBookings();
         res.json(resp);
     } catch (error) {
         console.log(error)
