@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {getAllBookings,findBooking,findAllBookings,createBooking,deleteBooking}=require("../services/booking.services")
+const {getAllBookings,findBooking,findBookingByUser,findAllBookings,createBooking,deleteBooking}=require("../services/booking.services")
 
 const bookingController = {}
 
@@ -54,7 +54,7 @@ bookingController.getAllBookings = async (req, res) => {
 bookingController.getBookingsByUser = async (req, res) => {
     try {
         // console.log(req.auth);
-        let resp=await findBooking(req.auth.id);
+        let resp=await findByUserBooking(req.auth.id);
         res.send(resp);
     } catch (error) {
         res.status(500).json({ message: error.message });

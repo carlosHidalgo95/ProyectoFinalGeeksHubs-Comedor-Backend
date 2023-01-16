@@ -3,7 +3,7 @@ const Dishes = models.dishes;
 const { Op } = require("sequelize");
 
 //Recuperar las reservas de un usuario concreto
-function findBooking(id_user) {
+function findBookingByUser(id_user) {
     const booking = models.bookings.findAll({
         where: {
             id_user
@@ -136,4 +136,4 @@ function findBookingsByDate(date) {
     return booking;
 }
 
-module.exports = { findBooking, findAllBookings, createBooking, getAllBookings, deleteBooking, findBookingsByDate };
+module.exports = { findBooking,findBookingByUser, findAllBookings, createBooking, getAllBookings, deleteBooking, findBookingsByDate };
