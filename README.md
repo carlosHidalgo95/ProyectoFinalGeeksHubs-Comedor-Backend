@@ -47,6 +47,7 @@ Este proyecto se encargará de gestionar el back la parte frontal se encuentra e
 [ProyectoFinalGeeksHubsFrontend](https://github.com/carlosHidalgo95/ProyectoFinalGeeksHubsFrontend)
 
 ## Diagrama Entidad Relación
+![image](https://user-images.githubusercontent.com/50781684/212573552-08ac7b72-334e-4883-92f0-f2730d4684d8.png)
 
 ## Listado de endpoints
 
