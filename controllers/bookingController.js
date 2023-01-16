@@ -1,6 +1,6 @@
 const models = require('../models/index');
 const { Op } = require("sequelize");
-const {getAllBookings,findBooking,findBookingByUser,findAllBookings,createBooking,deleteBooking}=require("../services/booking.services")
+const {getAllBookings,findBooking,findBookingByUser,findBookingsByDate,findAllBookings,createBooking,deleteBooking}=require("../services/booking.services")
 
 const bookingController = {}
 
